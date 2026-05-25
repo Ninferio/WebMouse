@@ -21,5 +21,6 @@ pip install flask pyautogui pystray Pillow
 ```bash
 python app.py
 ```
-<img alt="interface" src="https://github.com/user-attachments/assets/6b5109de-e4f3-4ba5-9dbf-43813c68393a" width="33%"/>
+<img width="1024" height="704" alt="image" src="https://github.com/user-attachments/assets/284c762f-3070-4910-ae4e-3b2ce0fe1f1f" />
+
 

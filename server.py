@@ -15,7 +15,6 @@ else:
 static_folder_path = os.path.join(base_dir, 'static')
 flask_app = Flask(__name__, static_folder=static_folder_path, static_url_path='/static')
 
-# Отключение логов
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
@@ -43,6 +42,17 @@ def click():
         return jsonify(success=False), 503
     button = request.args.get('b', 'left')
     pyautogui.click(button=button)
+    return jsonify(success=True)
+
+# НОВАЯ ФУНКЦИЯ: Обработка скролла (колёсика мыши)
+@flask_app.route('/scroll')
+def scroll():
+    if not server_active:
+        return jsonify(success=False), 503
+    clicks = int(request.args.get('clicks', 0))
+    # pyautogui.scroll принимает положительные (вверх) или отрицательные (вниз) числа
+    # Множитель 40-70 ускоряет прокрутку, чтобы не крутить пальцем бесконечно
+    pyautogui.scroll(clicks * 50)
     return jsonify(success=True)
 
 def run_flask():
